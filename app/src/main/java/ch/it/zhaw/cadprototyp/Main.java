@@ -3,12 +3,15 @@
  */
 package ch.it.zhaw.cadprototyp;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Main {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+
+    private static final Logger logger = Logger.getLogger(Main.class.getCanonicalName());
+
 
     public static void main(String[] args) {
-        System.out.println(new Main().getGreeting());
+        logger.log(Level.FINEST, "Main started");
     }
 }
