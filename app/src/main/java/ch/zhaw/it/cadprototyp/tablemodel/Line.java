@@ -1,4 +1,4 @@
-package ch.zhaw.it.cadprototyp.model;
+package ch.zhaw.it.cadprototyp.tablemodel;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class Line {
     private Point calculateMiddlePoint() {
         double x = (startPoint.getX() + endPoint.getX()) / 2;
         double y = (startPoint.getY() + endPoint.getY()) / 2;
-        return new Point(x, y);
+        return new Point(x, y, true);
     }
 
     private double calculateLength() {

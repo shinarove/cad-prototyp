@@ -1,4 +1,4 @@
-package ch.zhaw.it.cadprototyp.model;
+package ch.zhaw.it.cadprototyp.tablemodel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,8 +62,8 @@ public class Polygon {
             lines.getLast().moveEndPoint(firstPoint.x(), firstPoint.y());
             closed = true;
         } else if (!closed) {
-            Point startPoint = new Point(lastPoint.x(), lastPoint.y());
-            Point endPoint = new Point(firstPoint.x(), firstPoint.y());
+            Point startPoint = new Point(lastPoint.x(), lastPoint.y(), true);
+            Point endPoint = new Point(firstPoint.x(), firstPoint.y(), true);
             Line newLine = new Line(startPoint, endPoint);
             lines.add(newLine);
             closed = true;
