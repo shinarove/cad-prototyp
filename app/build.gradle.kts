@@ -41,6 +41,9 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+    tasks.compileJava {
+        options.encoding = "UTF-8"
+    }
 }
 
 application {
@@ -51,4 +54,13 @@ application {
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.run<JavaExec> {
+    // enable console input when running with gradle
+    standardInput = System.`in`
+    // set system property to load log configuration using class (takes precedence; if not set or fails, file is used)
+    systemProperty("java.util.logging.config.class", "ch.it.zhaw.cadprototyp.LogConfiguration")
+    // set system property to load log configuration from properties
+    systemProperty("java.util.logging.config.file", "log.properties")
 }

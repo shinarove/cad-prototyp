@@ -10,6 +10,9 @@ public class Main {
 
     private static final Logger logger = Logger.getLogger(Main.class.getCanonicalName());
 
+    Main() {
+        LogConfiguration.setLogLevel(Main.class, Level.FINE);
+    }
 
     public static void main(String[] args) {
         logger.log(Level.FINEST, "Main started");
