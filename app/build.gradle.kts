@@ -12,7 +12,7 @@ plugins {
 
 // Project/Module information
 description = "cad-prototyp"
-group = "ch.it.zhaw.cadprototyp"
+group = "ch.zhaw.it.cadprototyp"
 version = "2024"
 
 repositories {
@@ -48,7 +48,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "ch.it.zhaw.cadprototyp.Main"
+    mainClass = "ch.zhaw.it.cadprototyp.Main"
 }
 
 tasks.named<Test>("test") {

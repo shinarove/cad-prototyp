@@ -1,4 +1,4 @@
-package ch.it.zhaw.cadprototyp;
+package ch.zhaw.it.cadprototyp;
 
 import java.io.IOException;
 import java.io.InputStream;
