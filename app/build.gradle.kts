@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("org.openjfx.javafxplugin") version "0.1.0"
 }
 
 // Project/Module information
@@ -46,6 +47,11 @@ java {
     }
 }
 
+javafx {
+    version = "21.0.2"
+    modules("javafx.controls", "javafx.fxml")
+}
+
 application {
     // Define the main class for the application.
     mainClass = "ch.zhaw.it.cadprototyp.Main"
@@ -60,7 +66,7 @@ tasks.run<JavaExec> {
     // enable console input when running with gradle
     standardInput = System.`in`
     // set system property to load log configuration using class (takes precedence; if not set or fails, file is used)
-    systemProperty("java.util.logging.config.class", "ch.it.zhaw.cadprototyp.LogConfiguration")
+    systemProperty("java.util.logging.config.class", "ch.zhaw.it.cadprototyp.LogConfiguration")
     // set system property to load log configuration from properties
     systemProperty("java.util.logging.config.file", "log.properties")
 }
