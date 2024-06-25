@@ -1,7 +1,8 @@
 package ch.zhaw.it.cadprototyp.tablemodel;
 
-import ch.zhaw.it.cadprototyp.tablemodel.observerpattern.Observable;
-import ch.zhaw.it.cadprototyp.tablemodel.observerpattern.Observer;
+
+import ch.zhaw.it.cadprototyp.observer.BaseObservable;
+import ch.zhaw.it.cadprototyp.observer.Observable;
 
 public class Point {
 
@@ -9,21 +10,14 @@ public class Point {
     private double x;
     private double y;
 
-    public enum PointProperties {
-        VISIBILITY,
-        POINT_POSITION
-    }
-
-    private final Observable<Boolean, PointProperties> pointVisibility;
-    private final Observable<PointRecord, PointProperties> pointPosition;
+    private final BaseObservable<PointRecord> pointPositionProperty = new BaseObservable<>();
+    private final BaseObservable<Boolean> visibilityProperty = new BaseObservable<>();
 
 
     public Point(double x, double y, boolean isVisible) {
         this.x = x;
         this.y = y;
         this.isVisible = isVisible;
-        pointPosition = new Observable<>(PointProperties.POINT_POSITION);
-        pointVisibility = new Observable<>(PointProperties.VISIBILITY);
     }
 
     public double getX() {
@@ -46,7 +40,7 @@ public class Point {
         if (this.isVisible != isVisible) {
             boolean oldValue = this.isVisible;
             this.isVisible = isVisible;
-            pointVisibility.fireUpdate(oldValue, isVisible);
+            visibilityProperty.notifyObserver(oldValue, isVisible);
         }
     }
 
@@ -61,7 +55,7 @@ public class Point {
         this.x += deltaX;
         this.y += deltaY;
         PointRecord newValue = new PointRecord(x, y);
-        pointPosition.fireUpdate(oldValue, newValue);
+        pointPositionProperty.notifyObserver(oldValue, newValue);
     }
 
     public void moveTo(double x, double y) {
@@ -69,21 +63,32 @@ public class Point {
         this.x = x;
         this.y = y;
         PointRecord newValue = new PointRecord(x, y);
-        pointPosition.fireUpdate(oldValue, newValue);
+        pointPositionProperty.notifyObserver(oldValue, newValue);
     }
 
-    public void addObserver(Observer<PointProperties> observer) {
-        pointVisibility.addObserver(observer);
-        pointPosition.addObserver(observer);
+    public Observable<PointRecord> pointPositionProperty() {
+        return pointPositionProperty;
     }
 
-    public void removeObserver(Observer<PointProperties> observer) {
-        pointVisibility.addObserver(observer);
-        pointPosition.removeObserver(observer);
+    public Observable<Boolean> visibilityProperty() {
+        return visibilityProperty;
     }
 
+    /**
+     * Record for a point with x and y coordinates.
+     *
+     * @param x x-coordinate
+     * @param y y-coordinate
+     */
     public record PointRecord(double x, double y){
 
+        /**
+         * Compares two points with a given delta.
+         *
+         * @param p the point to compare with
+         * @param delta value in which the points are considered equal
+         * @return true if the points are equal, false otherwise
+         */
         public boolean equals(PointRecord p, double delta) {
             return Math.abs(this.x - p.x) < delta && Math.abs(this.y - p.y) < delta;
         }
