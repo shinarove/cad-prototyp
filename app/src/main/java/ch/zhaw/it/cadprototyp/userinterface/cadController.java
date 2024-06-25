@@ -1,20 +1,23 @@
 package ch.zhaw.it.cadprototyp.userinterface;
 
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
 import javafx.event.ActionEvent;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 
 public class cadController {
 
     @FXML
-    private Canvas canvas;
+    private Pane cadModel;
+
+    @FXML
+    private TextArea textOutput;
 
     @FXML
     void drawPoint(ActionEvent event) {
-        canvas.setOnMouseClicked(e -> {
-            GraphicsContext gc = canvas.getGraphicsContext2D();
-            gc.stroke();
+        textOutput.appendText("Point Position: (x, y)\n");
+        cadModel.setOnMouseClicked(e -> {
+            textOutput.appendText("("+e.getX()+", "+e.getY()+")\n");
         });
     }
 }

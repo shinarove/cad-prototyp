@@ -25,7 +25,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(cadController.class.getResource("cadView.fxml"));
-        Scene scene = loader.load();
+        Scene scene = new Scene(loader.load());
 
         cadController controller = loader.getController();
 
@@ -33,21 +33,5 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
-
-
-//        Canvas canvas = new Canvas(800, 600);
-//        GraphicsContext gc = canvas.getGraphicsContext2D();
-//
-//        gc.strokeLine(100, 100, 200, 200);
-//
-//        StackPane root = new StackPane();
-//        root.getChildren().add(canvas);
-//
-//        Scene scene = new Scene(root, 800, 600);
-//
-//        primaryStage.setTitle("CAD Prototype");
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
     }
 }
