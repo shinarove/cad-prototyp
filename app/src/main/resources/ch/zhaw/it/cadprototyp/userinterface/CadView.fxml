@@ -46,7 +46,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.zhaw.it.cadprototyp.userinterface.cadController">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.zhaw.it.cadprototyp.userinterface.CadController">
    <children>
       <VBox prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
@@ -98,7 +98,7 @@
                             <Button mnemonicParsing="false" onAction="#drawPoint" text="Draw Point" />
                           </items>
                         </ToolBar>
-                        <Pane fx:id="cadModel" VBox.vgrow="ALWAYS" />
+                        <Pane fx:id="cadModel" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.2" prefWidth="640.0" VBox.vgrow="ALWAYS" />
                         <TextArea fx:id="textOutput" prefHeight="100.0" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
@@ -107,13 +107,13 @@
             <HBox alignment="TOP_RIGHT" spacing="5.0" VBox.vgrow="NEVER">
                <children>
                   <Label text="X:" />
-                  <Label prefWidth="50.0" text="&amp;X" fx:id="xValue">
+                  <Label prefWidth="100.0" text="&amp;X" fx:id="xValue">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Label>
                   <Label text="Y:" />
-                  <Label fx:id="yValue" prefWidth="50.0" text="&amp;Y" />
+                  <Label fx:id="yValue" prefWidth="100.0" text="&amp;Y" />
                </children>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" top="5.0" />
