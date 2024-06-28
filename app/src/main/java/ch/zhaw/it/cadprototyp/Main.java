@@ -1,10 +1,9 @@
 package ch.zhaw.it.cadprototyp;
 
+import ch.zhaw.it.cadprototyp.userinterface.CadController;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.util.logging.Level;
@@ -22,18 +21,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Canvas canvas = new Canvas(800, 600);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        FXMLLoader loader = new FXMLLoader(CadController.class.getResource("cadView.fxml"));
+        Scene scene = new Scene(loader.load());
 
-        gc.strokeLine(100, 100, 200, 200);
-
-        StackPane root = new StackPane();
-        root.getChildren().add(canvas);
-
-        Scene scene = new Scene(root, 800, 600);
+        CadController controller = loader.getController();
 
         primaryStage.setTitle("CAD Prototype");
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 }
